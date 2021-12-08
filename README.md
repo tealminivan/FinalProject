@@ -67,14 +67,25 @@ Our implementation works with PyTorch>=1.0.0 Install other dependencies: `$ pip 
 ### Data
 We provide the citation network datasets under `data/`, which corresponds to [the public data splits](https://github.com/tkipf/gcn/tree/master/gcn/data).
 
-### How to run
-Citation Networks: We tune the only hyperparameter, weight decay, with hyperopt and put the resulting hyperparameter under `SGC-tuning`. 
-See `tuning.py` for more details on hyperparameter optimization.
-```
-$ python3 citation.py 
+### How to compiile
 
 ```
-if you want to run on cpu do the following:
+mkdir build
+cd build
+cmake ../kernel
+make
+
+```
+Move the kernel.so file to the main directory
+
+### How to run
+Choose between running with SGC or nSGC(the model I implemented)
+```
+$ python3 citation.py --model SGC
+$ python3 citation.py --model nSGC
+
+```
+if you want to run on cpu add the following arguments:
 ```
 $ python3 citation.py --no-cuda
 
