@@ -74,7 +74,6 @@ mkdir build
 cd build
 cmake ../kernel
 make
-
 ```
 Move the kernel.so file to the main directory
 
@@ -83,12 +82,10 @@ Choose between running with SGC or nSGC(the model I implemented)
 ```
 $ python3 citation.py --model SGC
 $ python3 citation.py --model nSGC
-
 ```
 if you want to run on cpu add the following arguments:
 ```
 $ python3 citation.py --no-cuda
-
 ```
 
 
