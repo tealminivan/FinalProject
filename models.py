@@ -4,6 +4,26 @@ from torch.nn import Module
 import torch.nn.functional as F
 import math
 
+
+#added a non linear SGC model
+class nSGC(nn.Module):
+
+    def __init__(self, nfeat, nclass):
+        super(nSGC, self).__init__()
+        self.W1 = nn.Linear(nfeat, nclass * 2)
+        self.W2 = nn.Linear(nclass * 2, nclass)
+        self.init()
+        
+    def init(self):
+        stdv = 1. / math.sqrt(self.W1.weight.size(1))
+        self.W1.weight.data.uniform_(-stdv, stdv)        
+    
+    def forward(self, x):
+        x = self.W1(x)
+        x = F.relu(x)
+        x = self.W2(x)
+        return x
+
 class SGC(nn.Module):
     """
     A Simple PyTorch Implementation of Logistic Regression.
@@ -11,9 +31,8 @@ class SGC(nn.Module):
     """
     def __init__(self, nfeat, nclass):
         super(SGC, self).__init__()
-
         self.W = nn.Linear(nfeat, nclass)
-
+      
     def forward(self, x):
         return self.W(x)
 
@@ -65,6 +84,9 @@ def get_model(model_opt, nfeat, nclass, nhid=0, dropout=0, cuda=True):
     elif model_opt == "SGC":
         model = SGC(nfeat=nfeat,
                     nclass=nclass)
+    elif model_opt == "nSGC":
+        model = nSGC(nfeat=nfeat,
+                    nclass=nclass)                
     else:
         raise NotImplementedError('model:{} is not implemented!'.format(model_opt))
 

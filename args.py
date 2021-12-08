@@ -19,7 +19,7 @@ def get_citation_args():
     parser.add_argument('--dataset', type=str, default="cora",
                         help='Dataset to use.')
     parser.add_argument('--model', type=str, default="SGC",
-                        choices=["SGC", "GCN"],
+                        choices=["SGC", "GCN", "nSGC"],
                         help='model to use.')
     parser.add_argument('--feature', type=str, default="mul",
                         choices=['mul', 'cat', 'adj'],

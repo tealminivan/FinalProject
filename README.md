@@ -66,24 +66,20 @@ Our implementation works with PyTorch>=1.0.0 Install other dependencies: `$ pip 
 
 ### Data
 We provide the citation network datasets under `data/`, which corresponds to [the public data splits](https://github.com/tkipf/gcn/tree/master/gcn/data).
-Due to space limit, please download reddit dataset from [FastGCN](https://github.com/matenure/FastGCN/issues/9) and put `reddit_adj.npz`, `reddit.npz` under `data/`.
 
-### Usage
+### How to run
 Citation Networks: We tune the only hyperparameter, weight decay, with hyperopt and put the resulting hyperparameter under `SGC-tuning`. 
 See `tuning.py` for more details on hyperparameter optimization.
 ```
-$ python citation.py --dataset cora --tuned
-$ python citation.py --dataset citeseer --tuned --epochs 150 
-$ python citation.py --dataset pubmed --tuned
+$ python3 citation.py 
+
+```
+if you want to run on cpu do the following:
+```
+$ python3 citation.py --no-cuda
+
 ```
 
-Reddit:
-```
-$ python reddit.py --inductive --test
-```
-### Downstream
-We collect the code base for downstream tasks under `downstream`. Currently, we
-are releasing only SGC implementation for text classification.
 
 ### Acknowledgement
 This repo is modified from [pygcn](https://github.com/tkipf/pygcn), and [FastGCN](https://github.com/matenure/FastGCN).
